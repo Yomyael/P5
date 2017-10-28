@@ -1,0 +1,208 @@
+\documentclass[12pt,a4paper,titlepage]{article}
+\usepackage[ngerman]{babel}
+\usepackage[scale=0.8]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{setspace}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{units}
+\usepackage{listings}
+\usepackage{dsfont}
+\usepackage{float}
+\usepackage{morefloats}
+\usepackage{fancyhdr}
+\usepackage[utf8]{inputenc}
+\usepackage{pdfpages}
+\usepackage{siunitx}
+\usepackage{wasysym}
+\pagestyle{fancy}
+\usepackage{marvosym}
+\usepackage{eurosym}
+\usepackage{graphicx}
+\usepackage{url}
+\setlength{\headheight}{15pt}
+\setcounter{tocdepth}{5}
+\setcounter{secnumdepth}{5}
+\usepackage{hyperref}
+\usepackage{csquotes}
+
+\author{Jonas Rieder, Marcel Nitsch}
+\date{\today}
+\title{P521: $\gamma$-Spektroskopie mit Szintillations- und Halbleiterdetektoren}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\section{Einleitung}
+
+\subsection{Versuchsziel}
+
+\noindent Das Ziel dieses Versuchs ist es, die $\gamma$-Spektroskopie mit Szintillations- und Ge-Halbleiterdetektoren kennezulernen. Die charakteristischen Eigenschaften wie Energieauflösung und Nachweiswahrscheinlichkeit beider Detektortypen sind zu bestimmen und zu vergleichen. Als Anwendung des Ge-Detektors ist ein beliebige Probe (in unserem Fall Kaffee) auf Radioaktivität zu untersuchen.
+
+\section{Vorkenntnisse}
+
+\subsection{Radioaktivität}
+
+\noindent Um $\gamma$-Spektren aufnehmen zu können müssen sie zuerst einmal produziert werden. Hierfür betrachten wir radioaktive Zerfäll - die spontane Emission von Strahlung aktiver Kerne. Grundsätzlich gibt es drei radioaktive Zerfälle: den $\alpha$-, $\beta$- und $\gamma$-Zerfall. \\\\
+
+\indent Der $\alpha$-Zerfall tritt auf, wenn ein großer instabiler Kern Energie in Form eines $^4_2$He-Kerns abstrahlt:
+\begin{align}
+^A_Z\text{X} \rightarrow {^{A-4}_{Z-2}\text{Y}} + {^4_2\text{He}}
+\end{align}
+
+\indent In $\beta$-Strahlung wird ein Nukleon in ein anderes umgewandelt unter Emission eines Elektrons bzw. Positrons und einem Elektronneutrino bzw. -Antineutrino:
+\begin{align}
+			\beta^-: & {^A_Z\text{X}} \rightarrow {^A_{Z+1}\text{Y}} + \text{e}^- + \bar{\nu}_e\\
+			\beta^+: & {^A_Z\text{X}} \rightarrow {^A_{Z-1}\text{Y}} + \text{e}^+ + \nu_e
+\end{align}
+
+\indent Bei einem $\gamma$-Zerfall regt sich ein angeregter Atomkern über Aussendung von Energie in Form eines $\gamma$-Quants ab:
+\begin{align}
+& {^A_Z\text{X}}^* \rightarrow {^A_Z\text{X}} + \gamma
+\end{align}
+
+\indent In der Natur gibt es keine reinen $\gamma$-Strahler mehr, da diese normalerweise eine sehr kurze Lebensdauer haben. Um $\gamma$-Spektren messen zu können benötigen wir Elemente, die eine Zerfallsreihe produzieren. Dies passiert, wenn ein radioaktives Element in ein anderes Element zerfällt, welches wiederum radioaktiv ist, usw. bis ein stabiler Kern erreicht ist.\\
+
+\indent In diesem Versuch betrachten wir $^{60}$Co, $^{137}$Cs und $^{152}$Eu. Diese sind allesamt $\beta$-Strahler. Cobalt in angeregtes $^{60}_{28}$Ni, welches unter Aussendung eines $\gamma$ in seinen Grundzustand fällt. Das $^{137}_{55}$Cs zerfällt zu $94.7\%$ in ein angeregtes $^{137}_{56}$Ba, mit $5.3\%$ direkt in den Grundzustand. Die angeregten Zustände senden bei der Abregung ein Photon ($\gamma$-Quant) bestimmter Energie und damit Wellenlänge ab, welche Charakteristisch für das Atom sind. Diese Photonen wollen wir also messen um die $\gamma$-Spektren aufzunehmen.
+
+\subsection{Wechselwirkung von $\gamma$ mit Materie}
+
+\noindent Damit wir überhaupt die Photonen messen können müssen wir wissen, wie sie mit Materie wechselwirken. Es gibt drei Mechanismen: der Photoeffekt, Compton-Streuung und Paarerzeugung. \\
+
+\subsubsection{Photoeffekt}
+
+\noindent In dem Photoeffekt gibt das einlaufende Photon all seine Energie an ein Elektron in der Atomehülle ab, welches somit aus seiner Bindung gelöst wird. Falls das Photon mehr Energie als die Austrittsarbeit hat tritt die Restenergie als kinetische Energie des Elektrons auf. Der Wirkungsquerschnitt dieses Effektes in Abhängigkeit von der Ordnungszahl Z des Absorbermaterials und der Photonenergie $E_\gamma$ lautet:
+\begin{align}
+\sigma_{\text{Photo}} \propto \text{Z}^5 \cdot \text{E}^{-\frac{7}{2}}_\gamma, \text{für } \text{E}_\gamma < \text{m}_\text{e}\text{c}^2\\
+\sigma_{\text{Photo}} \propto \text{Z}^5 \cdot \text{E}^{-1}_\gamma, \text{für } \text{E}_\gamma > \text{m}_\text{e}\text{c}^2.
+\end{align}
+
+\subsubsection{Compton-Effekt}
+
+\noindent  Bei dem Compton-Effekt handelt es sich um Streuung des einlaufenden Photons an einem Elektron, wobei es nur einen Teil seiner Energie an das Elektron überträgt. Dieser Streuprozess erfolgt nach heutigem Verständnis elastisch, da das Elektron ein fundamentales Teilchen ist. Der Wirkungsquerschnitt dieses Effektes in Abhängigkeit von der Ordnungszahl Z des Absorbermaterials und der Photonenergie $E_\gamma$ lautet:
+\begin{align}
+\sigma_{\text{Compton}} \propto \frac{\text{Z}}{\text{E}_\gamma}.
+\end{align}
+
+\subsubsection{Paarbildung}
+
+Unter Paarbildung versteht man den Zerfall eines Photons, mit $\text{E}_\gamma \le 2 \cdot \text{m}_e$, in ein Elektron-Positron-Paar:
+\begin{align}
+\gamma \rightarrow \text{e}^- + \text{e}^+ 
+\end{align}
+wobei die eventuell restliche Energie in die kinetische Energie des Paares geht. Der Wirkungsquerschnitt dieses Effektes in Abhängigkeit von der Ordnungszahl Z des Absorbermaterials und der Photonenergie $E_\gamma$ lautet:
+\begin{align}
+\sigma_{\text{Paar}} \propto \text{Z}^2 \ln(\text{E}_\gamma).
+\end{align}
+\newpage
+\subsection{Die Detektoren}
+
+Um die $\gamma$-Quanten zu messen brauchen wir Detektoren. Wie schon am Anfang angegeben verwenden wir in diesem Versuch einen Szintillations- und einen Halbleiterdetektor, dessen Wirkungsweisen im Folgenden weiter erläutert werden. 
+
+\subsubsection{Szintillationsdetektor}
+
+Der Aufbau eines Szintillationsdetektors sieht wie folgt aus:\\
+
+\begin{figure*}[h!]
+	\centering
+	\includegraphics[width=350pt]{Scintillation_Counter_Schematic.jpg}\\
+	\caption{Aufbau eines Szintillationsdetektors \cite{scinti}}
+	\label{scinti}
+\end{figure*}
+
+Wie aus Abb. \ref{scinti} folgt, besteht dieser Detektor aus einem Szintillator, einem Photomultiplier und einem Multikanalanalysator. Die Photonen aus der radioaktiven Probe treffen auf das szintillierende Material, wo es mit den Atomen über die oben genannten Mechanismen interagiert. Der Szintillator ist mit Störatomen dotiert, wodurch die durch die Wechselwirkung herausgestoßenen Elektronen zu den Störstellen wandern, wo sie das Störatom anregen. Dieses angeregte Störatom regt sich teilweise ohne Strahlung ab und sendet dann ein Photon aus mit einer Energie, die zu klein ist um ein weiteres Atom anzuregen. Diese Photonen werden ausgesand und wandern durch ein optisch leitendes Material auf einen Photomultiplier. 
+\newpage
+\subsubsection{Halbleiterdetektor}
+
+Den Aufbau eines Halbleiterdetektors sieht man in Abb. \ref{semi}. 
+
+ \begin{figure*}[h!]
+ 	\centering
+ 	\includegraphics[width=200pt]{Semi.jpg}\\
+ 	\caption{Aufbau eines Halbleiterdetektors \cite{semi}}
+ 	\label{semi}
+ \end{figure*}
+
+Im Prinzip ist der Detektor eine Diode, die in Sperrichtung betrieben wird. Durch diesen Betrieb wird die Sperrschicht größer (siehe Abb. \ref{diode}) und werden alle Elektronen und Löcher aus der Mitte direkt abgesaugt. Ein eintreffendes Photon ionisiert das Detektormaterial und die Elektronen und Löcher werden abgesaugt. Hierdurch wird ein Strom erzeugt, der dann gemessen werden kann.
+
+ \begin{figure*}[h!]
+	\centering
+	\includegraphics[width=150pt]{diodinho.jpg}\\
+	\caption{Diode \cite{diode}}
+	\label{diode}
+\end{figure*}
+
+Dadurch, dass die Teilchen im Detektor bei Raumtemperatur so viel termische Energie haben, würde ein so großer Strom erzeugt werden, dass der Detektor innerhalb ein paar Sekunden durchbrennen würde. Deshalb wird er mit flüssigem Stickstoff gekühlt. 
+
+\subsubsection{Photomultiplier}
+
+Der Aufbau eines Photomultipliers sieht wie folgt aus:\\
+
+\begin{figure*}[h!]
+	\centering
+	\includegraphics[width=350pt]{Photomultiplier.png}\\
+	\caption{Aufbau eines Photomultipliers \cite{pmt}}
+	\label{pmt}
+\end{figure*}
+
+Wie man aus Abb. \ref{pmt} entnehmen kann wird durch ein eintreffendes Photon ein Photoelektron herausgelöst, was auf die Dynoden in dem Photomultiplier trifft und da mehrere Elektronen auslöst. An den Dynoden liegen wachsende Spannungen an, wodurch die Elektronen immer zur nächsten Dynode beschleunigt werden. Da jedes eintreffende Elektron weitere Elektronen herauslöst kriegt man im Endeffekt eine Elektronendusche. Die Elektronen werden dann abgegriffen als elektronischer Puls. Wenn also ein hochenergetisches Photon in den Szintillator eintrifft wird ein hoher Puls gemessen, wenn ein Photon niedrigerer Energie eintrifft wird ein kleinerer Puls gemessen. 
+
+\subsection{Impulshöhenspektrum}
+
+Das Impulshöhenspektrum von $\gamma$-Quanten sieht aus wie folgt:
+
+\begin{figure*}[h!]
+	\centering
+	\includegraphics[width=350pt]{Spectrum.jpg}\\
+	\caption{$\gamma$-Spektrum einer Am-Be-Quelle, gemessen mit einem Germanium-Detektor. Dieses Diagramm dient als ein Beispiel für den Compton-Effekt und die Paarbildung. \cite{spektrum}}
+	\label{spektrum}
+\end{figure*}
+
+\textbf{Anmerkung: Anderes Spektrum suchen weil falsch!}
+
+Um dieses Spektrum zu erhalten muss die gemessene Energie analysiert werden. Dies passiert mit Hilfe eines Multikanalanalysators (engl. multichannel analyser, kurz MCA). Der MCA erstellt ein Histogramm von den gemessenen elektrischen Pulshöhen. Die Pulse, die aus den Detektoren kommen sind oft schwach und müssen deshalb verstärkt werden. Dies passiert durch einen Vorverstärker, der ein invertierender Integrator ist.
+
+\subsubsection{Der Photopeak (Full Energy Peak)}
+
+Der Photopeak entsteht dadurch, dass ein Photon seine gesamte Energie in dem Detektor lässt, beispielsweise durch den Photoeffekt.
+
+\subsubsection{Die Compton-Kante und -Kontinuum}
+
+Die Compton-Kante wird durch maximale Energieübertragung vom $\gamma$-Quant an das Elektron, also einem Streuwinkel von $\theta = \pi$. Das sogenannte Compton-Kontinuum entspringt der Streuung unter verschiedenen Streuwinkeln.
+
+\subsubsection{Rückstreupeak}
+
+Der Rückstreupeak entsteht dadurch, dass ein Photon außerhalb des Detektors Energie bei einer Compton-Streuung um $\theta = \pi$ verliert und danach in dem Detektor wahrgenommen wird. 
+
+\subsubsection{Escape-Peaks}
+
+In unserem Versuch war die Energie der $\gamma$-Quanten der radioaktiven Proben zwar zu klein, in Proben mit höherer Energie jedoch entstehen diese Peaks durch Paarbildung. Hier zerfällt ein Photon mit $\text{E}_\gamma \ge 2 \text{m}_e$ in ein Elektron und ein Positron. Wenn eines dieser den Detektor verlässt, wird die Energie $\text{E}_\gamma - \text{m}_e \text{c}^2$ gemessen, was man in dem Single-Escape-Peak sieht. Wenn beide den Detektor verlassen, wird die Energie $\text{E}_\gamma - 2 \text{m}_e \text{c}^2$ gemessen, was man in dem Double-Escape-Peak sieht. 
+
+
+
+\section{Notizen}
+Anderer Zustand, der nicht in der Tabelle steht (Marcel weiß bescheid). \\
+Kalibrierungsszintillator linken Kobalt Peak vernachlässigbar weil peak über compton kante\\
+\textbf{Jan fragen ob ich nochmal checken kann welchen $\phi$ die Detektoren haben.}
+
+\begin{thebibliography}{}
+
+\bibitem[Name im Lit-V]{Name zum Aufrufen} Autor, Jahr, Titel usw.
+
+\bibitem{scinti} \url{https://en.wikipedia.org/wiki/Scintillation_counter#/media/File:PhotoMultiplierTubeAndScintillator.svg}
+
+\bibitem{semi} \url{http://nsspi.tamu.edu/nssep/courses/basic-radiation-detection/semiconductor-detectors/introduction/introduction}
+
+\bibitem{pmt} \url{https://de.wikipedia.org/wiki/Photomultiplier#/media/File:Photomultiplier_schema_de.png}
+
+\bibitem{diode} \url{http://www.hbernstaedt.de/knowhow/led/led_physik.htm}
+
+\bibitem{spektrum} \url{https://commons.wikimedia.org/wiki/File%3AAm-Be-SourceSpectrum.jpg}
+
+\end{thebibliography}
+
+\end{document}
