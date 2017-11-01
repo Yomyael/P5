@@ -15,4 +15,4 @@ m1 = 2515
 a1 = 30000
 fit [2215:2815] g1(x) 'daten_sz.txt' u 1:2:(sqrt($2)) yerror via a1,s1,m1
 
-plot 'daten_sz.txt' u 1:2:(sqrt($2)) w yerrorbars notitle, g1(x)
+plot 'daten_sz.txt' u 1:2:(sqrt($2)) w yerrorbars notitle, [2000:3000] g1(x) notitle
